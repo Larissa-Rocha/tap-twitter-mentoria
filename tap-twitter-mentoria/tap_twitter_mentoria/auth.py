@@ -1,4 +1,4 @@
-"""MySourceName Authentication."""
+"""Twitter Authentication."""
 
 
 from singer_sdk.authenticators import OAuthAuthenticator, SingletonMeta
@@ -6,7 +6,7 @@ from singer_sdk.authenticators import OAuthAuthenticator, SingletonMeta
 
 # The SingletonMeta metaclass makes your streams reuse the same authenticator instance.
 # If this behaviour interferes with your use-case, you can remove the metaclass.
-class MySourceNameAuthenticator(OAuthAuthenticator, metaclass=SingletonMeta):
+class TwitterAuthenticator(OAuthAuthenticator, metaclass=SingletonMeta):
     """Authenticator class for MySourceName."""
 
     @property
@@ -23,7 +23,7 @@ class MySourceNameAuthenticator(OAuthAuthenticator, metaclass=SingletonMeta):
         }
 
     @classmethod
-    def create_for_stream(cls, stream) -> "MySourceNameAuthenticator":
+    def create_for_stream(cls, stream) -> "TwitterAuthenticator":
         return cls(
             stream=stream,
             auth_endpoint="TODO: OAuth Endpoint URL",

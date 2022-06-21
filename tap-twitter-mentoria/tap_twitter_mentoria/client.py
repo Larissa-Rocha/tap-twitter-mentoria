@@ -9,17 +9,17 @@ from memoization import cached
 from singer_sdk.helpers.jsonpath import extract_jsonpath
 from singer_sdk.streams import RESTStream
 
-from tap_twitter_mentoria.auth import MySourceNameAuthenticator
+from tap_twitter_mentoria.auth import TwitterAuthenticator
 
 
 SCHEMAS_DIR = Path(__file__).parent / Path("./schemas")
 
 
-class MySourceNameStream(RESTStream):
-    """MySourceName stream class."""
+class TwitterStream(RESTStream):
+    """Twitter stream class."""
 
     # TODO: Set the API's base URL here:
-    url_base = "https://api.mysample.com"
+    url_base = "https://api.twitter.com/2"
 
     # OR use a dynamic url_base:
     # @property
@@ -32,9 +32,9 @@ class MySourceNameStream(RESTStream):
 
     @property
     @cached
-    def authenticator(self) -> MySourceNameAuthenticator:
+    def authenticator(self) -> TwitterAuthenticator:
         """Return a new authenticator object."""
-        return MySourceNameAuthenticator.create_for_stream(self)
+        return TwitterAuthenticator.create_for_stream(self)
 
     @property
     def http_headers(self) -> dict:
