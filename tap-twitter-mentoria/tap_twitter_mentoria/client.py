@@ -9,7 +9,7 @@ from memoization import cached
 from singer_sdk.helpers.jsonpath import extract_jsonpath
 from singer_sdk.streams import RESTStream
 
-from tap_twitter_mentoria.auth import TwitterAuthenticator
+from singer_sdk.authenticators import BearerTokenAuthenticator
 
 
 SCHEMAS_DIR = Path(__file__).parent / Path("./schemas")
@@ -31,10 +31,12 @@ class TwitterStream(RESTStream):
     next_page_token_jsonpath = "$.meta.next_token"  # Or override `get_next_page_token`.
 
     @property
-    @cached
-    def authenticator(self) -> TwitterAuthenticator:
+    def authenticator(self) -> BearerTokenAuthenticator:
         """Return a new authenticator object."""
-        return TwitterAuthenticator.create_for_stream(self)
+        return BearerTokenAuthenticator.create_for_stream(
+            self,
+            token=self.config.get("api_key")
+        )
 
     @property
     def http_headers(self) -> dict:
