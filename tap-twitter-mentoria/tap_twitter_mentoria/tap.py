@@ -30,7 +30,7 @@ class TapMySourceName(Tap):
         th.Property(
             "project_ids",
             th.ArrayType(th.StringType),
-            required=True,
+            required=False,
             description="Project IDs to replicate"
         ),
         th.Property(
@@ -43,6 +43,12 @@ class TapMySourceName(Tap):
             th.StringType,
             default="https://api.mysample.com",
             description="The url for the API service"
+        ),
+        th.Property(
+            "bearer_token",
+            th.StringType,
+            required=True,
+            description="The token to authenticate against the API service"
         ),
     ).to_dict()
 
