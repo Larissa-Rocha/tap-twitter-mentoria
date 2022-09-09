@@ -35,7 +35,7 @@ class TwitterStream(RESTStream):
         """Return a new authenticator object."""
         return BearerTokenAuthenticator.create_for_stream(
             self,
-            token=self.config.get("api_key")
+            token=self.config.get("bearer_token")
         )
 
     @property

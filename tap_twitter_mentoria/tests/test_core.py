@@ -1,6 +1,8 @@
 """Tests standard tap features using the built-in SDK tests library."""
 
 from os import environ as env
+from dotenv import load_dotenv
+load_dotenv()
 
 import datetime
 
@@ -10,8 +12,9 @@ from tap_twitter_mentoria.tap import TapMySourceName
 
 SAMPLE_CONFIG = {
     "start_date": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d"),
-    "api_key": env["BEARER_TOKEN"],
-    "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36"
+    "bearer_token": env["BEARER_TOKEN"],
+    "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36",
+    "api_url": "https://api.twitter.com/2"
 }
 
 

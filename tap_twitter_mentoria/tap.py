@@ -22,12 +22,6 @@ class TapMySourceName(Tap):
     # TODO: Update this section with the actual config values you expect:
     config_jsonschema = th.PropertiesList(
         th.Property(
-            "api_key",
-            th.StringType,
-            required=True,
-            description="The token to authenticate against the API service"
-        ),
-        th.Property(
             "project_ids",
             th.ArrayType(th.StringType),
             required=False,
@@ -41,7 +35,7 @@ class TapMySourceName(Tap):
         th.Property(
             "api_url",
             th.StringType,
-            default="https://api.mysample.com",
+            default="https://api.twitter.com/2",
             description="The url for the API service"
         ),
         th.Property(
