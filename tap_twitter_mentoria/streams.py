@@ -16,7 +16,10 @@ SCHEMAS_DIR = Path(__file__).parent / Path("./schemas")
 class TweetsStream(TwitterStream):
     """Define custom stream."""
     name = "tweets"
-    path = "https://api.twitter.com/2/tweets/search/recent?query=%22delineador%22+lang%3Apt+-is%3Aretweet+-pessimo"
+    path = "/tweets/search/recent" 
+    query_search={
+        "query": '"delineador" lang:pt -is:retweet -pessimo'
+    }
     primary_keys = ["id"]
     replication_key = None
     # Optionally, you may also use `schema_filepath` in place of `schema`:

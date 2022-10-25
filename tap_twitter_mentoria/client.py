@@ -29,6 +29,7 @@ class TwitterStream(RESTStream):
 
     records_jsonpath = "$.data[*]"  # Or override `parse_response`.
     next_page_token_jsonpath = "$.meta.next_token"  # Or override `get_next_page_token`.
+    query_search = {}
 
     @property
     def authenticator(self) -> BearerTokenAuthenticator:
@@ -68,9 +69,9 @@ class TwitterStream(RESTStream):
         self, context: Optional[dict], next_page_token: Optional[Any]
     ) -> Dict[str, Any]:
         """Return a dictionary of values to be used in URL parameterization."""
-        params: dict = {}
+        params: dict = self.query_search
         if next_page_token:
-            params["page"] = next_page_token
+            params["pagination_token"] = next_page_token
         if self.replication_key:
             params["sort"] = "asc"
             params["order_by"] = self.replication_key
